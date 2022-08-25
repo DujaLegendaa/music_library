@@ -1,0 +1,12 @@
+{
+  "genres": {
+    "Blues": [
+      "Acoustic Blues",
+      "African Blues"
+    ],
+    "Jazz": [
+      "Acid Jazz",
+      "Fusion"
+    ]
+  }
+}
