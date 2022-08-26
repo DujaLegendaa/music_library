@@ -55,53 +55,6 @@ defmodule MusicLibrary.Music.Genre do
     |> Repo.insert()
   end
 
-  @doc """
-  Updates a genre.
-
-  ## Examples
-
-      iex> update_genre(genre, %{field: new_value})
-      {:ok, %Genre{}}
-
-      iex> update_genre(genre, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_genre(%Genre{} = genre, attrs) do
-    genre
-    |> Genre.changeset(attrs)
-    |> Repo.update()
-  end
-
-  @doc """
-  Deletes a genre.
-
-  ## Examples
-
-      iex> delete_genre(genre)
-      {:ok, %Genre{}}
-
-      iex> delete_genre(genre)
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def delete_genre(%Genre{} = genre) do
-    Repo.delete(genre)
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking genre changes.
-
-  ## Examples
-
-      iex> change_genre(genre)
-      %Ecto.Changeset{data: %Genre{}}
-
-  """
-  def change_genre(%Genre{} = genre, attrs \\ %{}) do
-    Genre.changeset(genre, attrs)
-  end
-
   alias MusicLibrary.Music.Genre.SubGenre
 
   @doc """
@@ -115,6 +68,11 @@ defmodule MusicLibrary.Music.Genre do
   """
   def list_subgenres do
     Repo.all(SubGenre)
+  end
+
+  def list_subgenres_of_genre(%Genre{} = genre) do
+    SubGenre.Query.for_genre(genre)
+    |> Repo.all()
   end
 
   @doc """
@@ -152,50 +110,4 @@ defmodule MusicLibrary.Music.Genre do
     |> Repo.insert()
   end
 
-  @doc """
-  Updates a sub_genre.
-
-  ## Examples
-
-      iex> update_sub_genre(sub_genre, %{field: new_value})
-      {:ok, %SubGenre{}}
-
-      iex> update_sub_genre(sub_genre, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_sub_genre(%SubGenre{} = sub_genre, attrs) do
-    sub_genre
-    |> SubGenre.changeset(attrs)
-    |> Repo.update()
-  end
-
-  @doc """
-  Deletes a sub_genre.
-
-  ## Examples
-
-      iex> delete_sub_genre(sub_genre)
-      {:ok, %SubGenre{}}
-
-      iex> delete_sub_genre(sub_genre)
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def delete_sub_genre(%SubGenre{} = sub_genre) do
-    Repo.delete(sub_genre)
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking sub_genre changes.
-
-  ## Examples
-
-      iex> change_sub_genre(sub_genre)
-      %Ecto.Changeset{data: %SubGenre{}}
-
-  """
-  def change_sub_genre(%SubGenre{} = sub_genre, attrs \\ %{}) do
-    SubGenre.changeset(sub_genre, attrs)
-  end
 end

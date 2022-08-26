@@ -45,4 +45,33 @@ defmodule MusicLibrary.MusicFixtures do
 
     sub_genre
   end
+
+  @doc """
+  Generate a artist.
+  """
+  def artist_fixture(attrs \\ %{}) do
+    {:ok, artist} =
+      attrs
+      |> Enum.into(%{
+        name: "some name"
+      })
+      |> MusicLibrary.Music.create_artist()
+
+    artist
+  end
+
+  @doc """
+  Generate a album.
+  """
+  def album_fixture(attrs \\ %{}) do
+    {:ok, album} =
+      attrs
+      |> Enum.into(%{
+        name: "some name",
+        year_of_release: 42
+      })
+      |> MusicLibrary.Music.create_album()
+
+    album
+  end
 end
